@@ -1,0 +1,23 @@
+# app/views/articles/show.html.erb
+
+<h1><%= @article.title %></h1>
+<p><%= @article.content %></p>
+
+<h2>Tags</h2>
+<ul>
+  <% @article.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+<h2>Comments</h2>
+<%= form_with model: [@article, @article.comments.build] do |form| %>
+  <%= form.text_field :content %>
+  <%= form.submit %>
+<% end %>
+
+<ul>
+  <% @article.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
